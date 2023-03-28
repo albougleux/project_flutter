@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_flutter/main.dart' as app;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+
 import '../test/helpers.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized().framePolicy =
+      LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
 
   testWidgets('Integration Test', (tester) async {
     await initAppTest(tester);

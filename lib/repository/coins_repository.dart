@@ -1,7 +1,7 @@
-import 'package:project_flutter/models/moeda.dart';
+import 'package:project_flutter/models/coin.dart';
 
-class MoedaRepository {
-  static List<Coin> coinList = [
+class CoinRepository {
+  static List<Coin> coinList = const [
     Coin(
       id: 0,
       icon: 'images/bitcoin.png',

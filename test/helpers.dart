@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:project_flutter/main.dart' as app;
-import 'package:project_flutter/models/moeda.dart';
+import 'package:project_flutter/models/coin.dart';
 
 class Helpers {
   static const bitcoin = Coin(

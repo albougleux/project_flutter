@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_flutter/pages/home_page.dart';
 
-class MeuAplicativo extends StatelessWidget {
-  const MeuAplicativo({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

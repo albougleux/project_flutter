@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:project_flutter/repository/moedas_controller.dart';
+import 'package:project_flutter/repository/coins_controller.dart';
 
 import '../helpers.dart';
 

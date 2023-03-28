@@ -1,4 +1,4 @@
-import 'package:project_flutter/models/moeda.dart';
+import 'package:project_flutter/models/coin.dart';
 
 class CoinsController {
   final List<Coin> _selected = [];

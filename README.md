@@ -1,6 +1,6 @@
 # project_flutter
 
-A new Flutter project.
+A new Flutter project, for the purpose to learn how to develop and test applications in Flutter.
 
 ## Getting Started
 

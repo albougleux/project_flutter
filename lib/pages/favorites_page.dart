@@ -1,23 +1,21 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
-class FavoritasPage extends StatefulWidget {
-  const FavoritasPage({super.key});
+class FavoritesPage extends StatefulWidget {
+  const FavoritesPage({super.key});
 
   @override
-  _FavoritasPageState createState() => _FavoritasPageState();
+  _FavoritesPageState createState() => _FavoritesPageState();
 }
 
-class _FavoritasPageState extends State<FavoritasPage> {
+class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Moedas Favoritas',
           style: TextStyle(color: Colors.white),
-          key: const Key('favorites_title'),
+          key: Key('favorites_title'),
         ),
         centerTitle: true,
         key: const Key('favorites_appbar'),

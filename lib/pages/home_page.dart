@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:project_flutter/pages/favoritas_page.dart';
-import 'package:project_flutter/pages/moedas_page.dart';
+import 'package:project_flutter/pages/coins_page.dart';
+import 'package:project_flutter/pages/favorites_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,18 +12,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int paginaAtual = 0;
+  int actualPage = 0;
   late PageController pc;
 
   @override
   void initState() {
     super.initState();
-    pc = PageController(initialPage: paginaAtual);
+    pc = PageController(initialPage: actualPage);
   }
 
-  void setPaginaAtual(int pagina) {
+  void setActualPage(int page) {
     setState(() {
-      paginaAtual = pagina;
+      actualPage = page;
     });
   }
 
@@ -33,27 +33,27 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: pc,
         children: [
-          MoedasPage.create(),
-          FavoritasPage(),
+          CoinsPage.create(),
+          const FavoritesPage(),
         ],
-        onPageChanged: setPaginaAtual,
+        onPageChanged: setActualPage,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: paginaAtual,
-        onTap: (pagina) {
-          paginaAtual = pagina;
+        currentIndex: actualPage,
+        onTap: (page) {
+          actualPage = page;
           pc.animateToPage(
-            paginaAtual,
-            duration: Duration(milliseconds: 400),
+            actualPage,
+            duration: const Duration(milliseconds: 400),
             curve: Curves.ease,
           );
         },
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.list_outlined),
             label: 'Todas',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.star_outlined),
             label: 'Favoritas',
           ),

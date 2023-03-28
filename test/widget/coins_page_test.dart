@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:project_flutter/models/moeda.dart';
-import 'package:project_flutter/pages/moedas_page.dart';
-import 'package:project_flutter/repository/moedas_controller.dart';
+import 'package:project_flutter/models/coin.dart';
+import 'package:project_flutter/pages/coins_page.dart';
+import 'package:project_flutter/repository/coins_controller.dart';
 
 import '../helpers.dart';
-import 'moedas_page_test.mocks.dart';
+import 'coins_page_test.mocks.dart';
 
 @GenerateMocks([CoinsController])
 void main() {
@@ -22,7 +22,7 @@ void main() {
   }) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: MoedasPage(
+        home: CoinsPage(
           controller: controller,
           coinList: coinlist,
         ),
@@ -36,7 +36,7 @@ void main() {
       when(controller.selected).thenReturn(Helpers.coinList);
       when(controller.isSelected(any)).thenReturn(true);
       await createWidget(tester);
-      expect(find.byType(MoedasPage), findsOneWidget);
+      expect(find.byType(CoinsPage), findsOneWidget);
       expect(find.byType(ListView), findsOneWidget);
       expect(find.byKey(const Key('coins_title_selected')), findsOneWidget);
       expect(
@@ -53,7 +53,7 @@ void main() {
       when(controller.selected).thenReturn([]);
       when(controller.isSelected(any)).thenReturn(false);
       await createWidget(tester);
-      expect(find.byType(MoedasPage), findsOneWidget);
+      expect(find.byType(CoinsPage), findsOneWidget);
       expect(find.byType(ListView), findsOneWidget);
       expect(find.byKey(const Key('coins_title_selected')), findsNothing);
       expect(

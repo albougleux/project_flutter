@@ -1,46 +1,51 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
+// ignore_for_file: sort_child_properties_last, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:project_flutter/models/moeda.dart';
+import 'package:project_flutter/models/coin.dart';
 
-class MoedasDetalhesPage extends StatefulWidget {
-  MoedasDetalhesPage({super.key, required this.coin});
-  Coin coin;
+class CoinDetailsPage extends StatefulWidget {
+  const CoinDetailsPage({required this.coin, super.key});
+  final Coin coin;
 
   @override
-  _MoedasDetalhesPageState createState() => _MoedasDetalhesPageState();
+  _CoinDetailsPageState createState() => _CoinDetailsPageState();
 }
 
-class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
+class _CoinDetailsPageState extends State<CoinDetailsPage> {
   NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: r'R$');
   final _form = GlobalKey<FormState>();
   final _valor = TextEditingController();
-  double quantidade = 0;
+  double quantity = 0;
   double minValue = 50;
 
-  void calcMoeda(String value) {
+  @override
+  void dispose() {
+    _valor.dispose();
+    super.dispose();
+  }
+
+  void coinCalculator(String value) {
     setState(() {
-      quantidade =
-          (value.isEmpty) ? 0 : double.parse(value) / widget.coin.price;
+      quantity = (value.isEmpty) ? 0 : double.parse(value) / widget.coin.price;
     });
   }
 
-  void comprar() {
+  void purchase() {
     if (_form.currentState!.validate()) {
-      // Salvar Compra no Database
+      // Save purchase in Database
 
       Navigator.pop(context);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text(
             'Compra realizada com sucesso!',
             textAlign: TextAlign.center,
           ),
           backgroundColor: Colors.green,
-          key: const Key('coins_purchase_snackbar'),
+          key: Key('coins_purchase_snackbar'),
         ),
       );
     }
@@ -52,7 +57,7 @@ class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
       appBar: AppBar(
         title: Text(
           widget.coin.name,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
           key: const Key('coins_details_title'),
@@ -61,11 +66,11 @@ class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
         key: const Key('coins_details_appbar'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.only(bottom: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -77,7 +82,7 @@ class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
                   Container(width: 10),
                   Text(
                     real.format(widget.coin.price),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w600,
                       letterSpacing: -1,
@@ -88,20 +93,20 @@ class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
                 ],
               ),
             ),
-            if (quantidade > 0)
+            if (quantity > 0)
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                   child: Text(
-                    '$quantidade ${widget.coin.initials}',
-                    style: TextStyle(
+                    '$quantity ${widget.coin.initials}',
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.lightBlue,
                     ),
                     key: const Key('coinbox_details_initials_text'),
                   ),
-                  margin: EdgeInsets.only(bottom: 24),
-                  padding: EdgeInsets.all(16),
+                  margin: const EdgeInsets.only(bottom: 24),
+                  padding: const EdgeInsets.all(16),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.lightBlue.withOpacity(0.1),
@@ -116,18 +121,18 @@ class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
               )
             else
               Container(
-                margin: EdgeInsets.only(bottom: 16),
+                margin: const EdgeInsets.only(bottom: 16),
               ),
             Form(
               key: _form,
               child: TextFormField(
                 controller: _valor,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 22,
                   color: Colors.lightBlue,
                 ),
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Valor',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.monetization_on_outlined),
@@ -148,23 +153,23 @@ class _MoedasDetalhesPageState extends State<MoedasDetalhesPage> {
                   }
                   return null;
                 },
-                onChanged: calcMoeda,
+                onChanged: coinCalculator,
                 key: const Key('coins_details_value_input'),
               ),
             ),
             Container(
               alignment: Alignment.bottomCenter,
-              margin: EdgeInsets.only(top: 24),
+              margin: const EdgeInsets.only(top: 24),
               child: ElevatedButton(
-                onPressed: comprar,
+                onPressed: purchase,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.check,
                       color: Colors.white,
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(16),
                       child: Text(
                         'Comprar',
