@@ -1,0 +1,14 @@
+description: Buying a coin from the moedas_page.dart
+---
+- expectVisible: 'Crypto Moedas'
+- expectVisible: 'Bitcoin'
+- pressOn: 'Bitcoin'
+# - expectVisible: '<-'
+# - pressOn: '<-'
+- expectVisible: 'Valor'
+- pressOn: 'Comprar'
+- expectVisible: 'Informe o valor da compra'
+- pressOn: 'Valor'
+- writeText: '600'
+- pressOn: 'Comprar'
+- expectVisible: 'Compra realizada com sucesso!'
